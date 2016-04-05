@@ -6,7 +6,7 @@ Performs a topological sort on input data.
 # Synopsis
 
 ```lua
-local dump = require "pl.pretty".dump
+local dump  = require "pl.pretty".dump
 local tsort = require "resty.tsort"
 
 local graph = tsort.new()
