@@ -1,15 +1,19 @@
 local setmetatable = setmetatable
-local assert = assert
 local select = select
 local ipairs = ipairs
 local pairs = pairs
 local type = type
 local function visit(k, n, m, s)
-    assert(m[k] ~= "temp", "There is a circular dependency in the graph. It is not possible to derive a topological sort.")
+    if m[k] == "temp" then
+        return "There is a circular dependency in the graph. It is not possible to derive a topological sort."
+    end
     if m[k] ~= nil then return end
     m[k] = "temp"
     for _, y in ipairs(n[k]) do
-        visit(y, n, m, s)
+        local err = visit(y, n, m, s)
+        if err then
+            return err
+        end
     end
     m[k] = "perm"
     s[#s+1] = k
@@ -52,7 +56,10 @@ function tsort:sort()
     local n  = self.nodes
     for k in pairs(n) do
         if m[k] == nil then
-            visit(k, n, m, s)
+            local err = visit(k, n, m, s)
+            if err then
+                return nil, err
+            end
         end
     end
     return s
