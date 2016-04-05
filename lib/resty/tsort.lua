@@ -24,12 +24,11 @@ function tsort:add(...)
     local n = self.nodes
     local p
     if c == 1 then
-        local a = select(1, ...)
-        if type(a) == "table" then
-            p = a
+        p = select(1, ...)
+        if type(p) == "table" then
             c = #p
         else
-            p = { a }
+            p = { p }
         end
     else
         p = { ... }
