@@ -60,7 +60,7 @@ dump(graph:sort())
 graph:add('first', 'second');
 graph:add('second', 'third', 'first');
 
-local sorted, err = graph:sort())
+local sorted, err = graph:sort()
 
 -- Returns:
 -- sorted = nil
