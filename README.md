@@ -64,7 +64,7 @@ local sorted, err = graph:sort())
 
 -- Returns:
 -- sorted = nil
---    err = "There is a circular dependency in the graph. It is not possible to derive a topological sort."
+-- err = "There is a circular dependency in the graph. It is not possible to derive a topological sort."
 ```
 
 ## License
