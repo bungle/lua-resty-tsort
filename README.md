@@ -63,7 +63,8 @@ graph:add('second', 'third', 'first');
 local sorted, err = graph:sort())
 
 -- Returns:
--- sorter = nil, err = "There is a circular dependency in the graph. It is not possible to derive a topological sort."
+-- sorted = nil
+--    err = "There is a circular dependency in the graph. It is not possible to derive a topological sort."
 ```
 
 ## License
