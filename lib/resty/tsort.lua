@@ -4,10 +4,9 @@ local ipairs = ipairs
 local pairs = pairs
 local type = type
 local function visit(k, n, m, s)
-    local z = m[k]
-    if z == 0 then
+    if m[k] == 0 then
         return "There is a circular dependency in the graph. It is not possible to derive a topological sort."
-    elseif z ~= 1 then
+    elseif m[k] ~= 1 then
         m[k] = 0
         for _, y in ipairs(n[k]) do
             local err = visit(y, n, m, s)
