@@ -1,13 +1,14 @@
 local setmetatable = setmetatable
-local ipairs = ipairs
 local pairs = pairs
 local type = type
 local function visit(k, n, m, s)
     if m[k] == 0 then return 1 end
     if m[k] == 1 then return end
     m[k] = 0
-    for _, y in ipairs(n[k]) do
-        if visit(y, n, m, s) then return 1 end
+    local f = n[k]
+    local c = #f
+    for i=1, c, 1 do
+        if visit(f[i], n, m, s) then return 1 end
     end
     m[k] = 1
     s[#s+1] = k
@@ -30,8 +31,9 @@ function tsort:add(...)
         end
     end
     local n = self.n
-    for _, i in ipairs(p) do
-        if n[i] == nil then n[i] = {} end
+    for i=1, c, 1 do
+        local f = p[i]
+        if n[f] == nil then n[f] = {} end
     end
     for i=2, c, 1 do
         local f = p[i]
