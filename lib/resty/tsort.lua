@@ -5,14 +5,11 @@ local pairs = pairs
 local type = type
 local function visit(k, n, m, s)
     if m[k] == 0 then
-        return "There is a circular dependency in the graph. It is not possible to derive a topological sort."
+        return 1
     elseif m[k] ~= 1 then
         m[k] = 0
         for _, y in ipairs(n[k]) do
-            local err = visit(y, n, m, s)
-            if err then
-                return err
-            end
+            if visit(y, n, m, s) then return 1 end
         end
         m[k] = 1
         s[#s+1] = k
@@ -56,9 +53,8 @@ function tsort:sort()
     local m  = {}
     for k in pairs(n) do
         if m[k] == nil then
-            local err = visit(k, n, m, s)
-            if err then
-                return nil, err
+            if visit(k, n, m, s) then
+                return nil, "There is a circular dependency in the graph. It is not possible to derive a topological sort."
             end
         end
     end
