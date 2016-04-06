@@ -4,16 +4,14 @@ local ipairs = ipairs
 local pairs = pairs
 local type = type
 local function visit(k, n, m, s)
-    if m[k] == 0 then
-        return 1
-    elseif m[k] ~= 1 then
-        m[k] = 0
-        for _, y in ipairs(n[k]) do
-            if visit(y, n, m, s) then return 1 end
-        end
-        m[k] = 1
-        s[#s+1] = k
+    if m[k] == 0 then return 1 end
+    if m[k] == 1 then return end
+    m[k] = 0
+    for _, y in ipairs(n[k]) do
+        if visit(y, n, m, s) then return 1 end
     end
+    m[k] = 1
+    s[#s+1] = k
 end
 local tsort = {}
 tsort.__index = tsort
@@ -35,9 +33,7 @@ function tsort:add(...)
         p = { ... }
     end
     for _, i in ipairs(p) do
-        if n[i] == nil then
-            n[i] = {}
-        end
+        if n[i] == nil then n[i] = {} end
     end
     for i=2, c, 1 do
         local f = p[i]
