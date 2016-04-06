@@ -71,9 +71,7 @@ local sorted, err = graph:sort()
 Before developing this library, I asked on #lua channel on Freenode if anyone knows a library that does
 topological sort. I also tried to search for a library. Unfortunately I didn't find anything. But, there
 was already a library from the great [@starius](https://github.com/starius) called [toposort](https://github.com/starius/toposort/).
-`toposort` looks really nice and it has a lot more features compared to `lua-resty-tsort`. So you may want to
-take a look to that as well especially if you are looking for a more full featured library. I have not
-benchmarked these libs or compared them to C-implementation of tsort or other alternatives. If your graph
+`toposort` looks really nice and it has a lot more features compared to `lua-resty-tsort` (also code, 245 lines vs. 57 lines). So you may want to take a look to that as well especially if you are looking for a more full featured library. I have not benchmarked these libs or compared them to C-implementation of tsort or other alternatives. If your graph
 is not too big, say you use these to sort Javascript / CSS files or something similar, I think the performance
 is not an issue.
 
