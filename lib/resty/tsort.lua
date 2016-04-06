@@ -18,7 +18,6 @@ function tsort.new()
     return setmetatable({ n = {} }, tsort)
 end
 function tsort:add(...)
-    local n = self.n
     local p = { ... }
     local c = #p
     if c == 0 then return self end
@@ -30,6 +29,7 @@ function tsort:add(...)
             p = { p }
         end
     end
+    local n = self.n
     for _, i in ipairs(p) do
         if n[i] == nil then n[i] = {} end
     end
