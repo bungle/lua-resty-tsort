@@ -1,5 +1,4 @@
 local setmetatable = setmetatable
-local select = select
 local ipairs = ipairs
 local pairs = pairs
 local type = type
@@ -19,11 +18,12 @@ function tsort.new()
     return setmetatable({ n = {} }, tsort)
 end
 function tsort:add(...)
-    local c = select("#", ...)
     local n = self.n
     local p = { ... }
+    local c = #p
+    if c == 0 then return self end
     if c == 1 then
-        p = select(1, ...)
+        p = p[1]
         if type(p) == "table" then
             c = #p
         else
