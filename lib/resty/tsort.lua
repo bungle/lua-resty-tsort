@@ -8,7 +8,6 @@ local function visit(k, n, m, s)
     if z == 0 then
         return "There is a circular dependency in the graph. It is not possible to derive a topological sort."
     elseif z ~= 1 then
-        if m[k] ~= nil then return end
         m[k] = 0
         for _, y in ipairs(n[k]) do
             local err = visit(y, n, m, s)
