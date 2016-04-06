@@ -21,7 +21,7 @@ end
 function tsort:add(...)
     local c = select("#", ...)
     local n = self.n
-    local p
+    local p = { ... }
     if c == 1 then
         p = select(1, ...)
         if type(p) == "table" then
@@ -29,8 +29,6 @@ function tsort:add(...)
         else
             p = { p }
         end
-    else
-        p = { ... }
     end
     for _, i in ipairs(p) do
         if n[i] == nil then n[i] = {} end
