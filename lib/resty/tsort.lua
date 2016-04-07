@@ -6,8 +6,7 @@ local function visit(k, n, m, s)
     if m[k] == 1 then return end
     m[k] = 0
     local f = n[k]
-    local c = #f
-    for i=1, c, 1 do
+    for i=1, #f do
         if visit(f[i], n, m, s) then return 1 end
     end
     m[k] = 1
@@ -31,7 +30,7 @@ function tsort:add(...)
         end
     end
     local n = self.n
-    for i=1, c, 1 do
+    for i=1, c do
         local f = p[i]
         if n[f] == nil then n[f] = {} end
     end
